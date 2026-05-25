@@ -1,8 +1,7 @@
 streamlit
-tensorflow
+tensorflow-cpu
 numpy
 Pillow
-opencv-python-headless
 scikit-learn
-seaborn
 matplotlib
+seaborn
