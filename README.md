@@ -5,24 +5,7 @@ An AI-powered Garbage Detection web app that classifies waste into 6 categories 
 ---
 
 ## 🏫 Project Details
-
-| Detail | Info |
-|---|---|
-| College / Institute | NSTI Mumbai-G |
-| Faculty / Teacher | Mala Mishra (Edunet Foundation) |
 | Project Type | AI / Deep Learning — Image Classification |
-
----
-
-## 👥 Team Members
-
-| Name | Role |
-|---|---|
-| Samir | Team Lead |
-| Ankit | Team Member |
-| Sushant | Team Member |
-| Mahesh | Team Member |
-| Pooja | Team Member |
 
 ---
 
