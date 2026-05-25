@@ -2,7 +2,13 @@ import streamlit as st
 import numpy as np
 import os
 from PIL import Image
-import tensorflow as tf
+
+# ── Try importing tensorflow ──────────────────────────────────────────────────
+try:
+    import tensorflow as tf
+    TF_AVAILABLE = True
+except ImportError:
+    TF_AVAILABLE = False
 
 # ── Page Config ───────────────────────────────────────────────────────────────
 st.set_page_config(
@@ -62,6 +68,8 @@ DANGER_BADGE = {
 # ── Load Model ────────────────────────────────────────────────────────────────
 @st.cache_resource
 def load_ecoscan_model():
+    if not TF_AVAILABLE:
+        return None
     model_path = "ecoscan_best_model.h5"
     if os.path.exists(model_path):
         return tf.keras.models.load_model(model_path)
@@ -82,8 +90,10 @@ if uploaded_file is not None:
     image = Image.open(uploaded_file).convert("RGB")
     st.image(image, caption="Uploaded Image", use_column_width=True)
 
-    if model is None:
-        st.warning("⚠️ Model file `ecoscan_best_model.h5` not found. Please place your trained model file in the same folder as app.py.")
+    if not TF_AVAILABLE:
+        st.warning("⚠️ TensorFlow is not installed. Model prediction is unavailable. Please add tensorflow to requirements.txt.")
+    elif model is None:
+        st.warning("⚠️ Model file `ecoscan_best_model.h5` not found. Please upload your trained model.")
     else:
         with st.spinner("🔍 Analyzing image..."):
             img_resized = image.resize(IMG_SIZE)
